@@ -11,7 +11,7 @@ public class PlayerScore : MonoBehaviour
     public InputField nameText;
 
     private System.Random random = new System.Random();
-
+    User user = new User();
     public static int playerScore;
     public static string playerName;
 
@@ -28,10 +28,29 @@ public class PlayerScore : MonoBehaviour
         postToDatabase();
     }
 
+    public void OnGetScore()
+    {
+        retrieveFromDatabase();
+    }
+
     private void postToDatabase()
     {
         User user = new User();
-        RestClient.Post( url: "https://daydream-b0bf1.firebaseio.com/.json", user);
+        RestClient.Put( url: "https://daydream-b0bf1.firebaseio.com/" + playerName + ".json", user);
+    }
+
+    private void updateScore()
+    {
+        scoreText.text = "Score: " + user.userScore;
+    }
+
+    private void retrieveFromDatabase()
+    {
+        RestClient.Get<User>(url: "https://daydream-b0bf1.firebaseio.com/" + nameText.text + ".json").Then(onResolved: response =>
+        {
+            user = response;
+            updateScore();
+        });
     }
 
 
