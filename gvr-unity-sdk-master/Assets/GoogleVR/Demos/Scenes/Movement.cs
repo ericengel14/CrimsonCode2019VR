@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    public float distance = 1;
+    public float distance = 6;
     public bool movement = false;
 
     // Start is called before the first frame update
