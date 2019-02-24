@@ -7,21 +7,31 @@ public class FinishLine : MonoBehaviour
 {
     public Text cdText;
 
+
     // Start is called before the first frame update
     void Start()
     {
+  
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        highScores.currentScore = Timer.timeLeft;
+
+        cdText.text = ("Your Score = " + highScores.currentScore);
+
+        Timer.youWin();
+
+        highScores.end();
+        //if (col.gameObject.name == "Player")
+        //{
         
+        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        void OnTriggerEnter(Collider collision)
-        {
-            //if (collision.tag == "Player")
-            //{
-                cdText.text = ("You Win");
-            //}
-        }
+        
     }
 }

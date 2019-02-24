@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public int timeLeft = 150;
+    public static int timeLeft = 150;
+    public static bool youWinB = false;
     public Text countdownText;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,16 @@ public class Timer : MonoBehaviour
             StopCoroutine("LoseTime");
             countdownText.text = "Times Up!";
         }
+
+        if (youWinB)
+        {
+            countdownText.text = "YOU WIN!!!!";
+        }
+    }
+
+    public static void youWin()
+    {
+        youWinB = true;
     }
 
     IEnumerator LoseTime()
